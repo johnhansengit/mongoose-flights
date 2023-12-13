@@ -1,0 +1,36 @@
+<%- include('../partials/header') %>
+
+ <h2>Flight List</h2>
+ <table>
+   <thead>
+     <tr>
+       <th>Airline</th>
+       <th>Airport</th>
+       <th>Flight No.</th>
+       <th>Departs</th>
+     </tr>
+   </thead>
+   <tbody>
+     <% flights.forEach(flight => { %>     
+       <tr class="flight-display">
+         <td><%= flight.airline %></td>
+         <td><%= flight.airport %></td>
+         <td><%= flight.flightNo %></td>
+         <td><%= flight.departs %></td>
+       </tr>
+   <% }) %>
+   </tbody>
+ </table>
+
+ <script>
+    const flightDisplays = document.querySelectorAll('.flight-display')
+    flightDisplays.forEach((flightDisplay) => {
+        const departsCell = flightDisplay.cells[3];
+        const departureDate = new Date(departsCell.textContent);
+        if (departureDate < new Date()) {
+            flightDisplay.classList.add('date-passed');
+        }
+    })
+ </script>
+
+ <%- include('../partials/footer') %>
