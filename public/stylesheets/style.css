@@ -2,6 +2,7 @@
 
 * {
   box-sizing: border-box;
+  cursor: default;
 }
 
 body {
@@ -75,7 +76,7 @@ main {
   display: inline;
 }
 
-/* --------------- FLIGHT TABLE --------------- */
+/* --------------- TABLES --------------- */
 
 table {
   background-image: linear-gradient(to bottom, rgba(29,45,78,0.35), rgba(29,45,78,0.90));
@@ -102,6 +103,13 @@ th:nth-child(4), td:nth-child(4) {
 tr {
   font-family: 'Tektur', sans-serif;
   color: #50aee0;
+}
+
+#main-table tr:hover td:not(:first-child),
+#dest-table tr:hover td {
+  background-image: none;
+  background-color: #1c4577;
+  cursor: default;
 }
 
 .date-passed {
