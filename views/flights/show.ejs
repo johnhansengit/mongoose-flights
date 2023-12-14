@@ -1,0 +1,57 @@
+<%- include('../partials/header') %>
+
+    <h1>Flight Detail</h1>
+
+    <h3>
+        <%= flight.airline %> Airlines
+    </h3>
+    Flight no.: <%= flight.flightNo %><br>
+        Departing: <div id="departing-airport">
+            <%= flight.airport %>
+        </div><br>
+        Date: <%= flight.departs %><br><br>
+
+            <div id="form-header">
+                <h4>Enter a New Stop/Destination</h4>
+            </div>
+            <form id="add-stop-destination" method="POST" action="/flights/<%= flight._id %>/destinations">
+
+                <div class="form-row">
+                    <label>Stop/Destination</label>
+                    <select name="airport" id="airport-selection"></select>
+                </div>
+                <div class="form-row">
+                    <label>Arrival Date/Time</label>
+                    <input type="datetime-local" name="arrival" id="date-input">
+                </div>
+                <div class="form-row">
+                    <button type="submit" id="add-stop-btn">Add Stop/Destination</button>
+                </div>
+            </form>
+
+            <h4>Destinations</h4>
+            <% if (flight.destinations.length) { %>
+
+                <% } else { %>
+                    No stops or destinations planned
+                    <% } %>
+
+                        <script>
+                            const airportSelection = document.getElementById('airport-selection')
+                            const departingAirport = document.getElementById('departing-airport')
+                            const airports = ['AUS', 'DWF', 'DEN', 'LAX', 'SAN']
+                            for (let i = 0; i < airports.length; i++) {
+                                if (airports[i] === departingAirport.innerText) { continue }
+                                const option = document.createElement('option')
+                                option.value = airports[i]
+                                option.innerText = airports[i]
+                                if (airports[i] === 'DEN') {
+                                    option.setAttribute('selected', 'selected');
+                                }
+                                airportSelection.appendChild(option)
+                            } 
+                        </script>
+
+                        <%- include('../partials/date-input-value') %>
+
+                            <%- include('../partials/footer') %>

@@ -35,9 +35,15 @@ const create = async (req, res) => {
     }
 }
 
+const show = async (req, res) => {
+    const flight = await Flight.findById(req.params.id);
+    res.render('flights/show', { title: 'Flight Detail', flight });
+}
+
 
 module.exports = {
     new: addFlight,
     create,
     index,
+    show,
 }

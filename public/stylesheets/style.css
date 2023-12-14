@@ -25,10 +25,15 @@ a:hover {
   color: #b7e2f2;
 }
 
+h3, h4 {
+  margin: 40px 0 5px;
+  color: #b7e2f2;
+}
+
 /* --------------- HEADER --------------- */
 
 header {
-  background-image: linear-gradient(to bottom, rgba(183,226,242,0.15), rgba(183,226,242,0));
+  background-image: linear-gradient(to bottom, rgba(183,226,242,0.20), rgba(183,226,242,0));
   width: 100%;
   height: auto;
   display: flex;
@@ -54,9 +59,10 @@ nav>a {
   transition: background-color 0.5s ease;
 }
 
-nav>a:hover {
+nav>a:hover, .active {
   background-color: rgba(80,174,224,0.5);
   border-radius: 10px;
+  color: #b7e2f2;
 }
 
 /* --------------- MAIN --------------- */
@@ -65,12 +71,32 @@ main {
   padding: 10px 50px;
 }
 
+#departing-airport {
+  display: inline;
+}
+
 /* --------------- FLIGHT TABLE --------------- */
 
 table {
   background-image: linear-gradient(to bottom, rgba(29,45,78,0.35), rgba(29,45,78,0.90));
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px 0;
+  border-collapse: separate;
+  border-spacing: 25px 0;
+}
+
+th {
+  color: #f8feff;
+  font-weight: normal;
+  text-align: left;
+}
+
+th:nth-child(3), td:nth-child(3) {
+  text-align: center;
+}
+
+th:nth-child(4), td:nth-child(4) {
+  text-align: right;
 }
 
 tr {
@@ -82,7 +108,25 @@ tr {
   color: red;
 }
 
+.detail-btn {
+  border: none;
+  box-shadow: none;
+  border-radius: 5px;
+  background-color: rgba(80,174,224,0.5);
+  transform: all 0.25s ease;
+}
+
+.detail-btn:hover {
+  cursor: pointer;
+  background-color:#b7e2f2;
+  color: #0f1523;
+}
+
 /* --------------- FORM --------------- */
+
+#form-header {
+  margin-left: 25%;
+}
 
 form {
   display: flex;
@@ -105,33 +149,44 @@ label {
   padding-right: 10px;
 }
 
-input, select, button {
+input, select, #submit-btn {
   flex-basis: 50%;
   text-align: left;
   width: 25%;
 }
 
-button {
+#submit-btn, #add-stop-btn {
   margin-left: 50%;
   border-radius: 10px;
   height: 40px;
   text-align: center;
   color: #1c4577;
-  background-image: linear-gradient(to right, rgb(80,174,224), rgb(33,113,178));
-  font-size: 20px;
-  font-weight: bold;
+  background-color: rgb(80,174,224);
+  background-image: linear-gradient(to left, rgb(80,174,224), rgb(33,113,178));
   font-family: 'Tektur', sans-serif;
   font-style: italic;
   transition: all 0.25s ease;
+  border: none;
+  box-shadow: none;
 }
 
-button:hover {
+#submit-btn {
+  font-size: 20px;
+}
+
+#add-stop-btn {
+  font-size: 15px;
+}
+
+#submit-btn:hover, #add-stop-btn:hover {
   color: #b7e2f2;
   cursor: pointer;
 }
 
-button:active {
-
+#submit-btn:active, #add-stop-btn:active {
+  background-color: #b7e2f2;
+  background-image: none;
+  color: #1c4577;
 }
 
 
@@ -139,7 +194,13 @@ button:active {
 
 footer {
   position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translate(-50%, 0);
+  background-image: linear-gradient(to top, rgba(15,21,35,1), rgba(15,21,35,0));
+  width: 100%;
+  height: auto;
+  bottom: 0;
+  padding: 25px;
+}
+
+footer>p {
+  text-align: center;
 }

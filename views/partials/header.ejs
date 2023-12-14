@@ -19,9 +19,9 @@
             <a href="/">☰ InFlightable ☰</a>
         </div>
         <nav>
-            <a href="/">Home</a>
-            <a href="/flights">All Flights</a>
-            <a href="/flights/add">Add Flight</a>
+            <a href="/" <%- title === 'InFlightable' ? 'class="active"': '' %>>Home</a>
+            <a href="/flights" <%- title === 'All Flights' ? 'class="active"': '' %>>All Flights</a>
+            <a href="/flights/add" <%- title === 'Add Flight' ? 'class="active"': '' %>>Add Flight</a>
         </nav>
     </header>
     <main>

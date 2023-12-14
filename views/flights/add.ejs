@@ -1,6 +1,8 @@
 <%- include('../partials/header') %>
 
-    <h2>Enter a New Flight</h2>
+    <div id="form-header">
+        <h2>Enter a New Flight</h2>
+    </div>
     <form action="/flights" method="POST">
         <div class="form-row">
             <label>Airline:</label>
@@ -26,22 +28,16 @@
         </div>
         <div class="form-row">
             <label>Departure Date:</label>
-            <input type="datetime-local" name="departs" id="deptDateInput">
+            <input type="datetime-local" name="departs" id="date=input">
         </div>
         <div class="form-row">
-            <button type="submit">Add Flight</button>
+            <button type="submit" id="submit-btn">Add Flight</button>
         </div>
     </form>
     <p>
         <%= errorMsg %>
     </p>
 
-    <script>
-        const departureDateInput = document.getElementById('deptDateInput');
-        let dateInOneYear = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
-        let formattedDate = dateInOneYear.toISOString().slice(0, 16);
-        departureDateInput.value = formattedDate;
-
-    </script>
+    <%- include('../partials/date-input-value') %>
 
     <%- include('../partials/footer') %>

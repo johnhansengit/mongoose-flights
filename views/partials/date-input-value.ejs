@@ -1,0 +1,7 @@
+<script>
+    const dateInput = document.getElementById('date-input');
+    let dateInOneYear = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
+    let formattedDate = dateInOneYear.toISOString().slice(0, 16);
+    dateInput.value = formattedDate;
+
+</script>
