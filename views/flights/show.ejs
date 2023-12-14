@@ -22,10 +22,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% flight.destinations.forEach((d)=> {
+                        <% flight.destinations.forEach((d, index)=> {
                             let departureDate = new Date(d.arrival);
                             let currentDate = new Date();
-                            let rowClass = departureDate < currentDate ? "flight-display date-passed" : "flight-display"
+                            let rowClass = departureDate < currentDate ? "date-passed fade-in-row" : "fade-in-row"
                                 ; %>
                                 <tr class="<%= rowClass %>">
                                     <td class="destination-cell">
@@ -88,5 +88,7 @@
                         </script>
 
                         <%- include('../partials/date-input-value') %>
+
+                        <%- include('../partials/fade-in-effect') %>
 
                             <%- include('../partials/footer') %>

@@ -12,33 +12,34 @@
             </tr>
         </thead>
         <tbody>
-            <% flights.forEach(flight => { 
+            <% flights.forEach((flight, index)=> {
                 let departureDate = new Date(flight.departs);
                 let currentDate = new Date();
-                let rowClass = departureDate < currentDate ? "flight-display date-passed" : "flight-display";
-            %>
-                <tr class="<%= rowClass %>">
-                    <td>
-                        <a href="/flights/<%= flight.id %>">
-                            <button class="detail-btn">Detail</button>
-                        </a>
-                    </td>
-                    <td>
-                        <%= flight.airline %>
-                    </td>
-                    <td>
-                        <%= flight.airport %>
-                    </td>
-                    <td>
-                        <%= flight.flightNo %>
-                    </td>
-                    <td>
-                        <%= flight.departs %>
-                    </td>
-                </tr>
-            <% }) %>
+                let rowClass = departureDate < currentDate ? "date-passed fade-in-row" : "fade-in-row" ; %>
+                    <tr class="<%= rowClass %>" data-index="<%= index %>">
+                        <td>
+                            <a href="/flights/<%= flight.id %>">
+                                <button class="detail-btn">Detail</button>
+                            </a>
+                        </td>
+                        <td>
+                            <%= flight.airline %>
+                        </td>
+                        <td>
+                            <%= flight.airport %>
+                        </td>
+                        <td>
+                            <%= flight.flightNo %>
+                        </td>
+                        <td>
+                            <%= flight.departs %>
+                        </td>
+                    </tr>
+                    <% }) %>
         </tbody>
-        
+
     </table>
+
+    <%- include('../partials/fade-in-effect') %>
 
     <%- include('../partials/footer') %>

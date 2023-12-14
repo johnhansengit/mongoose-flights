@@ -130,6 +130,22 @@ tr {
   color: #0f1523;
 }
 
+.fade-in-row {
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: forwards; 
+}
+
+
 /* --------------- FORMS --------------- */
 
 #add-stop-container {
