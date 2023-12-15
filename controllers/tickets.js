@@ -24,14 +24,28 @@ const create = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.render(`flights/${flight._id}/tickets/new`, {
-            title: 'New Ticket',
+            title: 'Flight Detail',
             errorMsg: err.message
         });
     }   
+}
+
+const deleteOne = async (req, res) => {
+    try {
+        await Ticket.findByIdAndDelete(req.params.id)
+        res.redirect('/flights');
+    } catch (err) {
+        console.log(err);
+        res.render('/flights', {
+            title: 'Flight Detail',
+            errorMsg: err.message
+        });
+    }
 }
 
 
 module.exports = {
     new: newTicket,
     create,
+    delete: deleteOne
 }
