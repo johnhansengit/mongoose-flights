@@ -28,7 +28,7 @@
         </div>
         <div class="form-row">
             <label>Departure Date:</label>
-            <input type="datetime-local" name="departs" id="date=input">
+            <input type="datetime-local" name="departs" value="<%= departsDate %>">
         </div>
         <div class="form-row">
             <button type="submit" id="submit-btn">Add Flight</button>
@@ -38,6 +38,6 @@
         <%= errorMsg %>
     </p>
 
-    <%- include('../partials/date-input-value') %>
+
 
     <%- include('../partials/footer') %>

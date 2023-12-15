@@ -9,7 +9,7 @@ const destinationSchema = new Schema({
         type: String,
         enum: airports,
     },
-    arrival: Date
+    arrival: Date,
 });
 
 const flightSchema = new Schema({

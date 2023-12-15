@@ -11,84 +11,139 @@
         </div><br>
         Date: <%= flight.departs %>
 
-            <h4>Destinations</h4>
-            <% if (flight.destinations.length) { %>
+            <section id="destinations-tickets">
+                <div>
+                    <h4>Destinations</h4>
+                    <% if (flight.destinations.length) { %>
 
-                <table id="dest-table">
-                    <thead>
-                        <tr>
-                            <th>Stop/Destination</th>
-                            <th>Arrival Date/Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% flight.destinations.forEach((d, index)=> {
-                            let departureDate = new Date(d.arrival);
-                            let currentDate = new Date();
-                            let rowClass = departureDate < currentDate ? "date-passed fade-in-row" : "fade-in-row"
-                                ; %>
-                                <tr class="<%= rowClass %>">
-                                    <td class="destination-cell">
-                                        <%= d.airport %>
-                                    </td>
-                                    <td>
-                                        <%= d.arrival %>
-                                    </td>
+                        <table id="dest-table">
+                            <thead>
+                                <tr>
+                                    <th>Stop/Destination</th>
+                                    <th>Arrival Date</th>
+                                    <th>Arrival Time</th>
                                 </tr>
-                                <% }) %>
-                    </tbody>
+                            </thead>
+                            <tbody>
+                                <% flight.destinations.forEach((d, index)=> {
+                                    let departureDate = new Date(d.arrival);
+                                    let currentDate = new Date();
 
-                </table>
+                                    let hours = ('0' + departureDate.getHours()).slice(-2);
+                                    let minutes = ('0' + departureDate.getMinutes()).slice(-2);
+                                    let displayTime = hours + ':' + minutes;
 
-                <% } else { %>
-                    No stops or destinations planned
-                    <% } %>
+                                    let rowClass = departureDate < currentDate ? "date-passed fade-in-row"
+                                        : "fade-in-row" ; %>
+                                        <tr class="<%= rowClass %>">
+                                            <td class="destination-cell">
+                                                <%= d.airport %>
+                                            </td>
+                                            <td>
+                                                <%= d.arrival.toISOString().slice(0, 10); %>
+                                            </td>
+                                            <td>
+                                                <%= displayTime %>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                            </tbody>
 
-                        <section id="add-stop-container">
-                            <div id="form-header">
-                                <h4>Enter a New Stop/Destination</h4>
-                            </div>
-                            <form id="add-stop-destination" method="POST"
-                                action="/flights/<%= flight._id %>/destinations">
+                        </table>
 
-                                <div class="form-row">
-                                    <label>Stop/Destination</label>
-                                    <select name="airport" id="airport-selection"></select>
+                        <% } else { %>
+                            No stops or destinations planned
+                            <% } %>
+
+                                <div id="add-stop-container">
+                                    <div id="form-header">
+                                        <h4>Enter a New Stop/Destination</h4>
+                                    </div>
+                                    <form id="add-stop-destination" method="POST"
+                                        action="/flights/<%= flight._id %>/destinations">
+
+                                        <div class="form-row">
+                                            <label>Stop/Destination</label>
+                                            <select name="airport" id="airport-selection"></select>
+                                        </div>
+                                        <div class="form-row">
+                                            <label>Arrival Date/Time</label>
+                                            <input type="datetime-local" name="arrival" value="<%= arrivalDate %>">
+                                        </div>
+                                        <div class="form-row">
+                                            <button type="submit" id="add-stop-btn">Add Stop/Destination</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="form-row">
-                                    <label>Arrival Date/Time</label>
-                                    <input type="datetime-local" name="arrival" id="date-input">
-                                </div>
-                                <div class="form-row">
-                                    <button type="submit" id="add-stop-btn">Add Stop/Destination</button>
-                                </div>
-                            </form>
-                        </section>
+                </div>
+                <div id="tickets-container">
 
-                        <script>
-                            const airportSelection = document.getElementById('airport-selection');
-                            const departingAirport = document.getElementById('departing-airport');
-                            const destinationsArr = document.querySelectorAll('.destination-cell');
-                            const destinationsText = Array.from(destinationsArr).map(el => el.innerText);
-                            const airports = ['AUS', 'DWF', 'DEN', 'LAX', 'SAN'];
+                    <h4>Tickets</h4>
+                    <% if (tickets.length) { %>
 
-                            for (let i = 0; i < airports.length; i++) {
-                                if (airports[i] === departingAirport.innerText || destinationsText.includes(airports[i])) {
-                                    continue;
-                                }
-                                const option = document.createElement('option');
-                                option.value = airports[i];
-                                option.innerText = airports[i];
-                                if (airports[i] === 'DEN') {
-                                    option.setAttribute('selected', 'selected');
-                                }
-                                airportSelection.appendChild(option);
-                            }
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Seat</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% tickets.forEach((t)=> { %>
 
-                        </script>
+                                    <tr>
+                                        <td>
+                                            <%= t.seat %>
+                                        </td>
+                                        <td>
+                                            $ <%= t.price %>
+                                        </td>
+                                        <td>
+                                            <button>Delete</button>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
 
-                        <%- include('../partials/date-input-value') %>
+                        </table>
 
-                        <%- include('../partials/fade-in-effect') %>
+                        <% } else { %>
+                            No tickets available
+                            <% } %>
 
-                            <%- include('../partials/footer') %>
+                                <a href="/flights/<%= flight._id %>/tickets/new">
+                                    <button>Add Ticket</button>
+                                </a>
+
+                </div>
+
+            </section>
+
+            <script>
+                const airportSelection = document.getElementById('airport-selection');
+                const departingAirport = document.getElementById('departing-airport');
+                const destinationsArr = document.querySelectorAll('.destination-cell');
+                const destinationsText = Array.from(destinationsArr).map(el => el.innerText);
+                const airports = ['AUS', 'DWF', 'DEN', 'LAX', 'SAN'];
+
+                for (let i = 0; i < airports.length; i++) {
+                    if (airports[i] === departingAirport.innerText || destinationsText.includes(airports[i])) {
+                        continue;
+                    }
+                    const option = document.createElement('option');
+                    option.value = airports[i];
+                    option.innerText = airports[i];
+                    if (airports[i] === 'DEN') {
+                        option.setAttribute('selected', 'selected');
+                    }
+                    airportSelection.appendChild(option);
+                }
+
+            </script>
+
+
+
+            <%- include('../partials/fade-in-effect') %>
+
+                <%- include('../partials/footer') %>

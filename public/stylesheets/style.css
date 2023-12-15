@@ -76,6 +76,23 @@ main {
   display: inline;
 }
 
+#welcome-text {
+  width: 50%;
+}
+
+#destinations-tickets {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+}
+
+#tickets-container {
+  background-image: linear-gradient(to bottom, rgba(29,45,78,0.35), rgba(29,45,78,0.90));
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
 /* --------------- TABLES --------------- */
 
 table {
@@ -92,7 +109,7 @@ th {
   text-align: left;
 }
 
-th:nth-child(3), td:nth-child(3) {
+th:nth-child(3), td:nth-child(3), td:nth-child(6) {
   text-align: center;
 }
 
@@ -141,7 +158,7 @@ tr {
 
 .fade-in {
   animation-name: fadeIn;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-fill-mode: forwards; 
 }
 
@@ -163,7 +180,6 @@ form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 50%;
 }
 
 .form-row {
@@ -186,8 +202,7 @@ input, select, #submit-btn {
   width: 25%;
 }
 
-#submit-btn, #add-stop-btn {
-  margin-left: 50%;
+#submit-btn, #add-stop-btn, #get-started-btn {
   border-radius: 10px;
   height: 40px;
   text-align: center;
@@ -201,7 +216,11 @@ input, select, #submit-btn {
   box-shadow: none;
 }
 
-#submit-btn {
+#submit-btn, #add-stop-btn {
+  margin-left: 50%;
+}
+
+#submit-btn, #get-started-btn {
   font-size: 20px;
 }
 
@@ -209,12 +228,12 @@ input, select, #submit-btn {
   font-size: 15px;
 }
 
-#submit-btn:hover, #add-stop-btn:hover {
+#submit-btn:hover, #add-stop-btn:hover, #get-started-btn:hover {
   color: #b7e2f2;
   cursor: pointer;
 }
 
-#submit-btn:active, #add-stop-btn:active {
+#submit-btn:active, #add-stop-btn:active, #get-started-btn:active {
   background-color: #b7e2f2;
   background-image: none;
   color: #1c4577;
