@@ -82,7 +82,7 @@ main {
 
 #destinations-tickets {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 30% 30%;
   gap: 10px;
 }
 
@@ -90,7 +90,13 @@ main {
   background-image: linear-gradient(to bottom, rgba(29,45,78,0.35), rgba(29,45,78,0.90));
   border-radius: 10px;
   padding: 15px;
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+}
+
+#add-ticket-container {
+  justify-self: center;
 }
 
 /* --------------- TABLES --------------- */
@@ -127,6 +133,14 @@ tr {
   background-image: none;
   background-color: #1c4577;
   cursor: default;
+}
+
+#dest-table {
+  width: 100%;
+}
+
+#tickets-table {
+  background-image: none;
 }
 
 .date-passed {
@@ -168,12 +182,12 @@ tr {
 #add-stop-container {
   background-image: linear-gradient(to bottom, rgba(29,45,78,0.35), rgba(29,45,78,0.90));
   border-radius: 10px;
-  padding: 15px 0;
+  padding: 25px;
   margin-top: 20px;
 }
 
-#form-header {
-  margin-left: 25%;
+#add-stop-container h4 {
+  margin: 0 0 10px;
 }
 
 form {
@@ -184,61 +198,82 @@ form {
 
 .form-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   margin-bottom: 10px;
 }
 
 label {
-  flex-basis: 50%;
+  flex-basis: 150px;
   text-align: right;
   padding-right: 10px;
 }
 
-input, select, #submit-btn {
-  flex-basis: 50%;
+input, select {
+  flex-basis: 200px;
   text-align: left;
-  width: 25%;
 }
 
-#submit-btn, #add-stop-btn, #get-started-btn {
+#submit-btn {
+  margin-left: 150px;
+}
+
+#submit-btn, #add-stop-btn, .get-started-btn, #delete-ticket, #add-ticket {
   border-radius: 10px;
   height: 40px;
   text-align: center;
   color: #1c4577;
-  background-color: rgb(80,174,224);
   background-image: linear-gradient(to left, rgb(80,174,224), rgb(33,113,178));
   font-family: 'Tektur', sans-serif;
   font-style: italic;
   transition: all 0.25s ease;
   border: none;
   box-shadow: none;
+  padding: 0 10px;
 }
 
-#submit-btn, #add-stop-btn {
-  margin-left: 50%;
-}
-
-#submit-btn, #get-started-btn {
+#submit-btn, .get-started-btn {
   font-size: 20px;
 }
 
 #add-stop-btn {
   font-size: 15px;
+  margin-left: 150px;
 }
 
-#submit-btn:hover, #add-stop-btn:hover, #get-started-btn:hover {
+#submit-btn:hover, #add-stop-btn:hover, .get-started-btn:hover, #add-ticket:hover, #delete-ticket:hover {
   color: #b7e2f2;
   cursor: pointer;
 }
 
-#submit-btn:active, #add-stop-btn:active, #get-started-btn:active {
+#submit-btn:active, #add-stop-btn:active, .get-started-btn:active, #add-ticket:active, #delete-ticket:active {
   background-color: #b7e2f2;
   background-image: none;
   color: #1c4577;
 }
 
+#delete-ticket {
+  height: 20px;
+  border-radius: 5px;;
+}
+
+#add-ticket {
+  padding: 10px; 
+}
+
+.get-started-btn {
+  margin-right: 15px;
+  padding: 0px 10px;
+}
+
+#new-ticket-form label {
+  flex-basis:75px;
+}
+
+#new-ticket-form input {
+  flex-basis: 300px;
+}
 
 /* --------------- FOOTER --------------- */
 

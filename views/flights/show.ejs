@@ -9,7 +9,7 @@
         Departing: <div id="departing-airport">
             <%= flight.airport %>
         </div><br>
-        Date: <%= flight.departs %>
+        Date: <%= flight.departs.toString().slice(0,21) %> <%= flight.departs.toString().slice(35,-1) %>
 
             <section id="destinations-tickets">
                 <div>
@@ -76,50 +76,55 @@
                                     </form>
                                 </div>
                 </div>
-                <div id="tickets-container">
-
+                <div>
                     <h4>Tickets</h4>
-                    <% if (tickets.length) { %>
+                    <div id="tickets-container">
 
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Seat</th>
-                                    <th>Price</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% tickets.forEach((t)=> { %>
+                        <div id="ticket-table-container">
 
-                                    <tr>
-                                        <td>
-                                            <%= t.seat %>
-                                        </td>
-                                        <td>
-                                            $ <%= t.price %>
-                                        </td>
-                                        <td>
-                                            <form action="/tickets/<%= t._id %>"
-                                                method="POST">
-                                                <input type="hidden" name="_method" value="DELETE">
-                                                <button type="submit">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <% }) %>
-                            </tbody>
+                            <% if (tickets.length) { %>
 
-                        </table>
+                                <table id="tickets-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Seat</th>
+                                            <th>Price</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% tickets.forEach((t)=> { %>
 
-                        <% } else { %>
-                            No tickets available
-                            <% } %>
+                                            <tr>
+                                                <td>
+                                                    <%= t.seat %>
+                                                </td>
+                                                <td>
+                                                    $ <%= t.price %>
+                                                </td>
+                                                <td>
+                                                    <form action="/flights/<%= flight._id %>/tickets/<%= t._id %>?_method=DELETE" method="POST">
+                                                        <button id="delete-ticket" type="submit">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+                                    </tbody>
 
-                                <a href="/flights/<%= flight._id %>/tickets/new">
-                                    <button>Add Ticket</button>
-                                </a>
+                                </table>
 
+                                <% } else { %>
+                                    No tickets available
+                                    <% } %>
+                        </div>
+                        <div id="add-ticket-container">
+                            <a href="/flights/<%= flight._id %>/tickets/new">
+                                <button id="add-ticket">Add Ticket</button>
+                            </a>
+
+                        </div>
+
+                    </div>
                 </div>
 
             </section>

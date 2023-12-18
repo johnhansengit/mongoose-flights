@@ -44,14 +44,19 @@ const create = async (req, res) => {
 
 const show = async (req, res) => {
     const flight = await Flight.findById(req.params.id);
-    const tickets = await Ticket.find({ flight: req.params.id });
+    const tickets = await Ticket.find({ flight: req.params.id }).sort('seat');
 
     let d = new Date();
     d.setFullYear(d.getFullYear() + 1);
     let arrivalDate = d.toISOString().slice(0, 16);
 
-    res.render('flights/show', { title: 'Flight Detail', flight, tickets, arrivalDate });
+    res.render('flights/show', { 
+        title: 'Flight Detail', 
+        flight, 
+        tickets, 
+        arrivalDate });
 }
+
 
 
 module.exports = {

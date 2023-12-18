@@ -10,6 +10,8 @@ const destinationSchema = new Schema({
         enum: airports,
     },
     arrival: Date,
+}, {
+    timestamps: true
 });
 
 const flightSchema = new Schema({
